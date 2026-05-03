@@ -126,7 +126,7 @@ st.markdown(
 if st.session_state.step == "Masalah":
     st.header("Identifikasi Masalah")
 
-    st.text_area("Masalah", key="kasus")
+    st.text_area("Masalah", key="kasus", on_change=autosave)
 
 # =========================
 # POWER
