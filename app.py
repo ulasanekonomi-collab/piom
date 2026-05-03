@@ -103,7 +103,7 @@ if st.session_state.step == "Masalah":
 elif st.session_state.step == "Power":
     st.header("Power")
 
-    st.session_state.power_aktor = st.text_area("Aktor")
+    st.text_area("Aktor", key="power_aktor")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Siapa yang diuntungkan?")
