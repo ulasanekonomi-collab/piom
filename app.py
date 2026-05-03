@@ -116,8 +116,8 @@ elif st.session_state.step == "Power":
 elif st.session_state.step == "Institution":
     st.header("Institution")
 
-    st.session_state.institution_formal = st.text_area("Formal")
-    st.session_state.institution_informal = st.text_area("Informal")
+    st.text_area("Formal", key="institution_formal")
+    st.text_area("Informal", key="institution_informal")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Aturan apa berlaku?")
