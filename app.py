@@ -143,7 +143,7 @@ elif st.session_state.step == "Incentive":
 elif st.session_state.step == "Transaction Cost":
     st.header("Transaction Cost")
 
-    st.session_state.cost = st.text_area("Biaya")
+    st.text_area("Biaya", key="cost")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa yang membuat sulit?")
