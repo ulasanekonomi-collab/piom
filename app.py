@@ -57,6 +57,10 @@ st.session_state.step = selected
 # HEADER
 # =========================
 st.title("PIOM Analyzer")
+st.markdown(
+    "<p style='font-size:12px; color:gray;'>Dikembangkan oleh Yuhka Sundaya, Ekonomi Pembangunan, Universitas Islam Bandung</p>",
+    unsafe_allow_html=True
+)
 st.caption("Power – Institution – Outcome Map")
 
 # =========================
