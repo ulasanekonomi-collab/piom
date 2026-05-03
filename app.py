@@ -1,4 +1,8 @@
 import streamlit as st
+
+# =========================
+# HELPER FUNCTIONS
+# =========================
 def score_level(text):
     if not text:
         return 0
@@ -9,7 +13,9 @@ def score_level(text):
         return 2
     else:
         return 3
-        def analyze_piom():
+
+
+def analyze_piom():
     ins_score = score_level(st.session_state.incentive)
     cost_score = score_level(st.session_state.cost)
 
@@ -30,6 +36,7 @@ Institusi: {st.session_state.institution_formal}
 """
 
     return root, causal
+
 
 # =========================
 # PAGE CONFIG
@@ -89,13 +96,13 @@ st.session_state.step = selected
 # =========================
 st.title("PIOM Analyzer")
 st.markdown(
-    "<p style='font-size:12px; color:gray;'>Dikembangkan oleh Yuhka Sundaya, Ekonomi Pembangunan, Universitas Islam Bandung</p>",
+    "<p style='font-size:12px; color:gray;'>Dikembangkan oleh Yuhka Sundaya · Ekonomi Pembangunan · Universitas Islam Bandung</p>",
     unsafe_allow_html=True
 )
 st.caption("Power – Institution – Outcome Map")
 
 # =========================
-# HELPER: SUMMARY PANEL
+# SUMMARY PANEL
 # =========================
 def summary():
     st.sidebar.markdown("### 🧠 Ringkasan Sementara")
@@ -219,20 +226,24 @@ elif st.session_state.step == "Design":
 # =========================
 elif st.session_state.step == "Output":
     st.header("Hasil Analisis")
-root, causal = analyze_piom()
 
-st.subheader("🧠 Analisis Inti")
-st.success(root)
+    # ANALISIS OTOMATIS
+    root, causal = analyze_piom()
 
-st.subheader("🔗 Rantai Kausal")
-st.write(causal)
-st.subheader("🎯 Prioritas Intervensi")
+    st.subheader("🧠 Analisis Inti")
+    st.success(root)
 
-if "insentif" in root:
-    st.write("1. Reformasi sistem insentif (penilaian, reward)")
-if "biaya" in root:
-    st.write("2. Turunkan biaya transaksi (akses, kemampuan)")
-st.write("3. Perkuat institusi & budaya akademik")
+    st.subheader("🔗 Rantai Kausal")
+    st.write(causal)
+
+    st.subheader("🎯 Prioritas Intervensi")
+
+    if "insentif" in root:
+        st.write("1. Reformasi sistem insentif (penilaian, reward)")
+    if "biaya" in root:
+        st.write("2. Turunkan biaya transaksi (akses, kemampuan)")
+    st.write("3. Perkuat institusi & budaya akademik")
+
     st.subheader("📊 Ringkasan PIOM")
 
     st.write(f"""
