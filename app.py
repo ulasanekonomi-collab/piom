@@ -1,4 +1,35 @@
 import streamlit as st
+def score_level(text):
+    if not text:
+        return 0
+    length = len(text.split())
+    if length < 10:
+        return 1
+    elif length < 25:
+        return 2
+    else:
+        return 3
+        def analyze_piom():
+    ins_score = score_level(st.session_state.incentive)
+    cost_score = score_level(st.session_state.cost)
+
+    if ins_score >= 2 and cost_score >= 2:
+        root = "Masalah didorong oleh kombinasi insentif yang tidak tepat dan biaya transaksi yang tinggi."
+    elif ins_score >= 2:
+        root = "Masalah terutama disebabkan oleh insentif yang tidak selaras."
+    elif cost_score >= 2:
+        root = "Masalah terutama disebabkan oleh biaya transaksi yang tinggi."
+    else:
+        root = "Masalah belum cukup teridentifikasi secara struktural."
+
+    causal = f"""
+Institusi: {st.session_state.institution_formal}
+→ menciptakan insentif: {st.session_state.incentive}
+→ memengaruhi perilaku: {st.session_state.behavior}
+→ menghasilkan outcome: {st.session_state.outcome}
+"""
+
+    return root, causal
 
 # =========================
 # PAGE CONFIG
@@ -188,7 +219,20 @@ elif st.session_state.step == "Design":
 # =========================
 elif st.session_state.step == "Output":
     st.header("Hasil Analisis")
+root, causal = analyze_piom()
 
+st.subheader("🧠 Analisis Inti")
+st.success(root)
+
+st.subheader("🔗 Rantai Kausal")
+st.write(causal)
+st.subheader("🎯 Prioritas Intervensi")
+
+if "insentif" in root:
+    st.write("1. Reformasi sistem insentif (penilaian, reward)")
+if "biaya" in root:
+    st.write("2. Turunkan biaya transaksi (akses, kemampuan)")
+st.write("3. Perkuat institusi & budaya akademik")
     st.subheader("📊 Ringkasan PIOM")
 
     st.write(f"""
