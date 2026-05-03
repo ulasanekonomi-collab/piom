@@ -12,14 +12,22 @@ FIELDS = [
 
 def autosave():
     data = {k: st.session_state.get(k, "") for k in FIELDS}
-    with open(SAVE_FILE, "w") as f:
-        json.dump(data, f)
+    try:
+        with open(SAVE_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        st.write("Error autosave:", e)
 def autoload():
-    if os.path.exists(SAVE_FILE):
-        with open(SAVE_FILE, "r") as f:
-            data = json.load(f)
-        for k in FIELDS:
-            st.session_state[k] = data.get(k, "")        
+    try:
+        if os.path.exists(SAVE_FILE):
+            with open(SAVE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            for k in FIELDS:
+                if k in data:
+                    st.session_state[k] = data[k]
+    except Exception as e:
+        st.write("Error autoload:", e)        
 # =========================
 # HELPER FUNCTIONS
 # =========================
@@ -105,6 +113,8 @@ st.session_state.step = st.sidebar.radio("Langkah Analisis", steps)
 # HEADER
 # =========================
 st.title("PIOM Analyzer")
+# ✅ DEBUG DI SINI
+st.sidebar.write("DEBUG kasus:", st.session_state.get("kasus"))
 st.markdown(
     "<p style='font-size:12px;color:gray;'>Dikembangkan oleh Yuhka Sundaya · Ekonomi Pembangunan · Universitas Islam Bandung</p>",
     unsafe_allow_html=True
