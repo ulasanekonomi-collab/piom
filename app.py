@@ -187,7 +187,7 @@ elif st.session_state.step == "Transaction Cost":
 elif st.session_state.step == "Behavior":
     st.header("Behavior")
 
-   st.text_area("Perilaku", key="behavior", on_change=autosave)
+    st.text_area("Perilaku", key="behavior", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Bagaimana respon aktor?")
