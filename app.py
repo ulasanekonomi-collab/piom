@@ -1,5 +1,25 @@
 import streamlit as st
+import json
+import os
 
+SAVE_FILE = "piom_autosave.json"
+
+FIELDS = [
+    "kasus","power_aktor","institution_formal",
+    "institution_informal","incentive","cost",
+    "behavior","outcome","design"
+]
+
+def autosave():
+    data = {k: st.session_state.get(k, "") for k in FIELDS}
+    with open(SAVE_FILE, "w") as f:
+        json.dump(data, f)
+def autoload():
+    if os.path.exists(SAVE_FILE):
+        with open(SAVE_FILE, "r") as f:
+            data = json.load(f)
+        for k in FIELDS:
+            st.session_state[k] = data.get(k, "")        
 # =========================
 # HELPER FUNCTIONS
 # =========================
@@ -67,6 +87,7 @@ def init_state():
             st.session_state[k] = v
 
 init_state()
+autoload()
 
 # =========================
 # SIDEBAR
