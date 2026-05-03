@@ -168,7 +168,7 @@ elif st.session_state.step == "Behavior":
 elif st.session_state.step == "Outcome":
     st.header("Outcome")
 
-    st.session_state.outcome = st.text_area("Hasil")
+    st.text_area("Outcome", key="outcome")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Efisien?")
