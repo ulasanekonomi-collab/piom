@@ -174,7 +174,7 @@ elif st.session_state.step == "Incentive":
 elif st.session_state.step == "Transaction Cost":
     st.header("Transaction Cost")
 
-    st.text_area("Biaya", key="cost")
+    st.text_area("Biaya", key="cost", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa yang membuat sulit?")
@@ -187,7 +187,7 @@ elif st.session_state.step == "Transaction Cost":
 elif st.session_state.step == "Behavior":
     st.header("Behavior")
 
-    st.text_area("Perilaku", key="behavior")
+   st.text_area("Perilaku", key="behavior", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Bagaimana respon aktor?")
@@ -199,8 +199,7 @@ elif st.session_state.step == "Behavior":
 elif st.session_state.step == "Outcome":
     st.header("Outcome")
 
-    st.text_area("Outcome", key="outcome")
-
+    st.text_area("Outcome", key="outcome", on_change=autosave)
     st.markdown("### Pertanyaan Kritis")
     st.write("Efisien?")
     st.write("Adil?")
@@ -211,7 +210,7 @@ elif st.session_state.step == "Outcome":
 elif st.session_state.step == "Design":
     st.header("Design")
 
-    st.text_area("Solusi", key="design")
+    st.text_area("Solusi", key="design", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa diubah?")
