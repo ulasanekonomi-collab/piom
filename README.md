@@ -13,8 +13,4 @@ Aplikasi ini dikembangkan untuk membantu:
 
 ---
 
-## 🚀 Cara Menjalankan
-
-1. Install dependencies:
-```bash
-pip install streamlit
+##dikembangkan oleh Yuhka Sundaya
