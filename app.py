@@ -180,7 +180,7 @@ elif st.session_state.step == "Outcome":
 elif st.session_state.step == "Design":
     st.header("Design")
 
-    st.session_state.design = st.text_area("Solusi")
+    st.text_area("Solusi", key="design")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa diubah?")
