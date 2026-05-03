@@ -147,8 +147,8 @@ elif st.session_state.step == "Power":
 elif st.session_state.step == "Institution":
     st.header("Institution")
 
-    st.text_area("Formal", key="institution_formal")
-    st.text_area("Informal", key="institution_informal")
+    st.text_area("Formal", key="institution_formal", on_change=autosave)
+    st.text_area("Informal", key="institution_informal", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Aturan apa berlaku?")
@@ -161,7 +161,7 @@ elif st.session_state.step == "Institution":
 elif st.session_state.step == "Incentive":
     st.header("Incentive")
 
-    st.text_area("Insentif", key="incentive")
+    st.text_area("Insentif", key="incentive", on_change=autosave)
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa yang memotivasi?")
