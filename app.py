@@ -130,7 +130,7 @@ elif st.session_state.step == "Institution":
 elif st.session_state.step == "Incentive":
     st.header("Incentive")
 
-    st.session_state.incentive = st.text_area("Insentif")
+    st.text_area("Insentif", key="incentive")
 
     st.markdown("### Pertanyaan Kritis")
     st.write("Apa yang memotivasi?")
