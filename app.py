@@ -144,7 +144,11 @@ elif st.session_state.step == "Power":
         "Apa peran mereka?",
         value=st.session_state.power_peran
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Siapa yang paling diuntungkan dari sistem ini?")
+st.write("Siapa yang memiliki kekuasaan menentukan aturan?")
+st.write("Apakah ada aktor yang dirugikan?")
 # =========================
 # STEP: INSTITUTION
 # =========================
@@ -160,7 +164,11 @@ elif st.session_state.step == "Institution":
         "Institusi informal",
         value=st.session_state.institution_informal
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Aturan apa yang secara formal mengatur sistem ini?")
+st.write("Norma informal apa yang sebenarnya lebih dominan?")
+st.write("Apakah aturan ini ditegakkan?")
 # =========================
 # STEP: INCENTIVE
 # =========================
@@ -171,7 +179,11 @@ elif st.session_state.step == "Incentive":
         "Apa insentif yang terbentuk?",
         value=st.session_state.incentive
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Apa yang membuat aktor memilih tindakan tertentu?")
+st.write("Apakah usaha tinggi menghasilkan hasil lebih baik?")
+st.write("Apakah sistem memberi reward atau justru toleransi?")
 # =========================
 # STEP: TRANSACTION COST
 # =========================
@@ -187,7 +199,11 @@ elif st.session_state.step == "Transaction Cost":
         "Masalah informasi",
         value=st.session_state.informasi
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Apa yang membuat sistem ini tidak efisien?")
+st.write("Apa biaya tersembunyi yang muncul?")
+st.write("Apakah informasi mudah diakses?")
 # =========================
 # STEP: BEHAVIOR
 # =========================
@@ -198,7 +214,11 @@ elif st.session_state.step == "Behavior":
         "Perilaku yang muncul",
         value=st.session_state.behavior
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Bagaimana aktor merespons sistem ini?")
+st.write("Apakah perilaku ini rasional?")
+st.write("Apakah ada penyimpangan dari aturan?")
 # =========================
 # STEP: OUTCOME
 # =========================
@@ -209,7 +229,11 @@ elif st.session_state.step == "Outcome":
         "Apa hasil dari sistem ini?",
         value=st.session_state.outcome
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Apa dampak dari sistem ini?")
+st.write("Apakah hasilnya efisien?")
+st.write("Apakah hasilnya adil?")
 # =========================
 # STEP: DESIGN
 # =========================
@@ -220,7 +244,11 @@ elif st.session_state.step == "Design":
         "Apa solusi atau perbaikan yang diusulkan?",
         value=st.session_state.design
     )
+st.markdown("### Pertanyaan Kritis")
 
+st.write("Apa yang harus diubah dalam sistem?")
+st.write("Bagaimana memperbaiki insentif?")
+st.write("Bagaimana menurunkan biaya transaksi?")
 # =========================
 # STEP: OUTPUT
 # =========================
