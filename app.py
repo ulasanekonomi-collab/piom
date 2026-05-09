@@ -5,11 +5,29 @@ import os
 SAVE_FILE = "piom_autosave.json"
 
 FIELDS = [
-    "kasus","power_aktor","institution_formal",
-    "institution_informal","incentive","cost",
-    "behavior","outcome","design"
-]
+    "kasus",
+    "power_aktor",
 
+    "institution_formal",
+    "institution_informal",
+
+    "incentive",
+    "cost",
+
+    "behavior",
+    "outcome",
+    "design",
+
+    # tambahan baru
+    "informasi",
+    "nilai",
+
+    # simulation variables
+    "benefit_score",
+    "cost_score",
+    "info_score",
+    "moral_score"
+]
 def autosave():
     data = {k: st.session_state.get(k, "") for k in FIELDS}
     try:
@@ -32,6 +50,42 @@ def autoload():
 # HELPER FUNCTIONS
 # =========================
 def score_level(text):
+    if not text:
+        return 0
+
+    length = len(text.split())
+
+    if length < 10:
+        return 1
+    elif length < 30:
+        return 2
+    else:
+        return 3
+# =========================
+# PIOM SIMULATION ENGINE
+# =========================
+
+def calculate_behavior_score(B, C, N, M):
+
+    # Formula PIOM
+    S = B + N + M - C
+
+    return S
+
+
+def interpret_score(S):
+
+    if S <= 0:
+        return "Perilaku sulit berubah"
+
+    elif S <= 5:
+        return "Perubahan mungkin terjadi"
+
+    elif S <= 10:
+        return "Perubahan cukup kuat"
+
+    else:
+        return "Perubahan sangat mungkin terjadi"
     if not text:
         return 0
     length = len(text.split())
