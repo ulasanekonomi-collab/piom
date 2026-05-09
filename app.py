@@ -158,7 +158,7 @@ st.sidebar.title("PIOM Flow")
 
 steps = [
     "Masalah","Power","Institution","Incentive",
-    "Transaction Cost","Behavior","Outcome","Design","Output"
+    "Transaction Cost","Behavior","Outcome","Design","Simulation","Output"
 ]
 
 st.session_state.step = st.sidebar.radio("Langkah Analisis", steps)
@@ -270,7 +270,45 @@ elif st.session_state.step == "Design":
     st.write("Apa diubah?")
     st.write("Bagaimana insentif diperbaiki?")
     st.write("Bagaimana cost diturunkan?")
+# =========================
+# SIMULATION
+# =========================
 
+elif st.session_state.step == "Simulation":
+
+    st.header("PIOM Simulation Engine")
+
+    st.markdown("""
+    Simulasi perubahan perilaku berdasarkan:
+    - Benefit / Incentive
+    - Transaction Cost
+    - Information
+    - Moral Support
+    """)
+
+    # INPUT SIMULASI
+    B = st.slider("Benefit / Incentive", 0, 10, 5)
+    C = st.slider("Transaction Cost", 0, 10, 5)
+    N = st.slider("Information / Framing", 0, 10, 5)
+    M = st.slider("Moral / Normative Support", 0, 10, 5)
+
+    # HITUNG
+    S = calculate_behavior_score(B, C, N, M)
+
+    # OUTPUT
+    st.subheader("Behavior Score")
+
+    st.metric("Score", S)
+
+    st.success(interpret_score(S))
+
+    # MATRIX
+    st.subheader("PIOM Design Matrix")
+
+    st.table({
+        "Variable": ["Benefit", "Cost", "Information", "Moral"],
+        "Score": [B, C, N, M]
+    })
 # =========================
 # OUTPUT
 # =========================
