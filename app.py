@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import plotly.express as px
 import json
 import os
 
@@ -350,7 +352,6 @@ elif st.session_state.step == "Simulation":
     # =========================
     # MATRIX
     # =========================
-
     st.subheader("PIOM Design Matrix")
 
     st.table({
@@ -358,6 +359,33 @@ elif st.session_state.step == "Simulation":
         "Existing": [B1, C1, N1, M1],
         "After Design": [B2, C2, N2, M2]
     })
+    # =========================
+    # RADAR CHART
+    # =========================
+
+    st.subheader("Institutional Design Radar")
+
+    radar_df = pd.DataFrame({
+        "Variable": ["Benefit", "Cost", "Information", "Moral"],
+        "Existing": [B1, C1, N1, M1],
+        "After Design": [B2, C2, N2, M2]
+    })
+
+    radar_long = radar_df.melt(
+        id_vars="Variable",
+        var_name="Condition",
+        value_name="Score"
+    )
+
+    fig = px.line_polar(
+        radar_long,
+        r="Score",
+        theta="Variable",
+        color="Condition",
+        line_close=True
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
 # =========================
 # OUTPUT
 # =========================
