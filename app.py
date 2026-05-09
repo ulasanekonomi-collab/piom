@@ -276,38 +276,89 @@ elif st.session_state.step == "Design":
 
 elif st.session_state.step == "Simulation":
 
-    st.header("PIOM Simulation Engine")
+    elif st.session_state.step == "Simulation":
+
+    st.header("PIOM Institutional Design Simulator")
 
     st.markdown("""
-    Simulasi perubahan perilaku berdasarkan:
-    - Benefit / Incentive
-    - Transaction Cost
-    - Information
-    - Moral Support
+    Simulasi perubahan perilaku sebelum dan sesudah institutional design.
     """)
 
-    # INPUT SIMULASI
-    B = st.slider("Benefit / Incentive", 0, 10, 5)
-    C = st.slider("Transaction Cost", 0, 10, 5)
-    N = st.slider("Information / Framing", 0, 10, 5)
-    M = st.slider("Moral / Normative Support", 0, 10, 5)
+    # =========================
+    # EXISTING CONDITION
+    # =========================
 
-    # HITUNG
-    S = calculate_behavior_score(B, C, N, M)
+    st.subheader("Existing Condition")
 
-    # OUTPUT
-    st.subheader("Behavior Score")
+    B1 = st.slider("Existing Benefit / Incentive", 0, 10, 2)
+    C1 = st.slider("Existing Transaction Cost", 0, 10, 8)
+    N1 = st.slider("Existing Information / Framing", 0, 10, 3)
+    M1 = st.slider("Existing Moral Support", 0, 10, 3)
 
-    st.metric("Score", S)
+    S1 = calculate_behavior_score(B1, C1, N1, M1)
 
-    st.success(interpret_score(S))
+    probability1 = min(max((S1 + 10) * 5, 0), 100)
 
+    st.metric("Existing Score", S1)
+    st.metric("Existing Probability", f"{probability1}%")
+
+    st.divider()
+
+    # =========================
+    # DESIGN SCENARIO
+    # =========================
+
+    st.subheader("After Institutional Design")
+
+    B2 = st.slider("New Benefit / Incentive", 0, 10, 7)
+    C2 = st.slider("New Transaction Cost", 0, 10, 3)
+    N2 = st.slider("New Information / Framing", 0, 10, 7)
+    M2 = st.slider("New Moral Support", 0, 10, 7)
+
+    S2 = calculate_behavior_score(B2, C2, N2, M2)
+
+    probability2 = min(max((S2 + 10) * 5, 0), 100)
+
+    st.metric("New Score", S2)
+    st.metric("New Probability", f"{probability2}%")
+
+    st.divider()
+
+    # =========================
+    # DESIGN IMPACT
+    # =========================
+
+    delta_score = S2 - S1
+    delta_probability = probability2 - probability1
+
+    st.subheader("Design Impact")
+
+    st.metric("Δ Score", delta_score)
+    st.metric("Δ Probability", f"{delta_probability}%")
+
+    # INTERPRETASI
+    if delta_score <= 0:
+        st.error("Design belum efektif mengubah perilaku.")
+
+    elif delta_score <= 5:
+        st.warning("Design mulai memberi pengaruh.")
+
+    elif delta_score <= 10:
+        st.success("Design cukup efektif.")
+
+    else:
+        st.success("Design sangat efektif mengubah perilaku.")
+
+    # =========================
     # MATRIX
+    # =========================
+
     st.subheader("PIOM Design Matrix")
 
     st.table({
         "Variable": ["Benefit", "Cost", "Information", "Moral"],
-        "Score": [B, C, N, M]
+        "Existing": [B1, C1, N1, M1],
+        "After Design": [B2, C2, N2, M2]
     })
 # =========================
 # OUTPUT
