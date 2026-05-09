@@ -168,7 +168,16 @@ st.session_state.step = st.sidebar.radio("Langkah Analisis", steps)
 # =========================
 # HEADER
 # =========================
-st.image("Yuhka-Sundaya.jpg", width=150)
+col1, col2 = st.columns([1,4])
+
+with col1:
+    st.image("Yuhka-Sundaya.jpg", width=120)
+
+with col2:
+    st.title("PIOM Analyzer")
+    st.caption(
+        "Dikembangkan oleh Yuhka Sundaya"
+    )
 st.title("PIOM Analyzer")
 # ✅ DEBUG DI SINI
 st.sidebar.write("DEBUG kasus:", st.session_state.get("kasus"))
