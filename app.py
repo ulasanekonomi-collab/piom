@@ -276,8 +276,6 @@ elif st.session_state.step == "Design":
 
 elif st.session_state.step == "Simulation":
 
-    elif st.session_state.step == "Simulation":
-
     st.header("PIOM Institutional Design Simulator")
 
     st.markdown("""
