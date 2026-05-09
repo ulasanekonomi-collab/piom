@@ -168,6 +168,7 @@ st.session_state.step = st.sidebar.radio("Langkah Analisis", steps)
 # =========================
 # HEADER
 # =========================
+st.image("Yuhka-Sundaya.jpg", width=150)
 st.title("PIOM Analyzer")
 # ✅ DEBUG DI SINI
 st.sidebar.write("DEBUG kasus:", st.session_state.get("kasus"))
