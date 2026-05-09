@@ -175,10 +175,7 @@ with col1:
 
 with col2:
     st.title("PIOM Analyzer")
-    st.caption(
-        "Dikembangkan oleh Yuhka Sundaya"
-    )
-st.title("PIOM Analyzer")
+    st.caption("Dikembangkan oleh Yuhka Sundaya")
 # ✅ DEBUG DI SINI
 st.sidebar.write("DEBUG kasus:", st.session_state.get("kasus"))
 st.markdown(
